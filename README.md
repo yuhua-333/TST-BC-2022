@@ -1,4 +1,4 @@
-# TST-BC-2022
+# Employee salary management system
 Project framework: ssm+maven+javaweb+mysql
 
 Project Description: basic management of employee salary and information
