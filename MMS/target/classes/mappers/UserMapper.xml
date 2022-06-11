@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.UserDao">
+    <!-- 先定义一个Interface，UserMapper，然后Mapper文件的namespace指向的就是这个Interface， UserInterface里定义的方法和UserMapper.xml文件中的一样, 
+        然后代码里直接使用接口 -->
+    <resultMap id="BaseResultMap" type="entity.User">
+        <result column="userName" property="username" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        userName, password
+    </sql>
+
+    <!--用户登录 -->
+    <select id="loginByUserNameAndPassword"  resultMap="BaseResultMap" parameterType="entity.User">
+        select 
+        <include refid="Base_Column_List" />
+         from user 
+         where 
+         userName = #{username} 
+         and password = #{password} 
+    </select>
+    
+    <!-- 用户注册 -->
+    <insert id="insertUser" parameterType="entity.User">
+        insert into user values (#{username},#{password})
+    </insert>
+
+</mapper>
